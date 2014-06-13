@@ -16,7 +16,9 @@ algo_circle_search(void* key, const void* base, size_t n, size_t size, int (*com
         pos = (start + end) / 2;
         cmp = compar(key, ITEM_IDX(base, size, pos));
         if(0 != cmp && (pos == start || pos == end)){
-            pos = (pos + 1) % n;
+            if(cmp > 0){
+                pos = (pos + 1) % n;
+            }
             break;
         }
         if(cmp < 0){
